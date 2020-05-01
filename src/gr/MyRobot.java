@@ -1,5 +1,5 @@
 
-package wiki;
+package gr;
 
 import robocode.AdvancedRobot;
 

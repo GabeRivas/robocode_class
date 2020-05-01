@@ -1,4 +1,4 @@
-package wiki;
+package gr;
 
 import robocode.*;
 import robocode.util.Utils;
@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 
 import kd_tree.*;
 
-public class BasicSurfer extends AdvancedRobot {
+public class Infinity  extends AdvancedRobot {
 
     public static int BINS = 47;
     public static double _surfStats[] = new double[BINS]; // we'll use 47 bins
