@@ -1,5 +1,7 @@
 package gr;
 
+import java.awt.Color;
+import static java.awt.Color.green;
 import robocode.*;
 import robocode.util.Utils;
 import java.awt.geom.*;     // for Point2D's
@@ -9,7 +11,7 @@ import java.util.PriorityQueue;
 
 import kd_tree.*;
 
-public class Infinity  extends AdvancedRobot {
+public class Stark  extends AdvancedRobot {
 
     public static int BINS = 47;
     public static double _surfStats[] = new double[BINS]; // we'll use 47 bins
@@ -40,12 +42,14 @@ public class Infinity  extends AdvancedRobot {
     // (extending straight out the front or back) before touching a wall.
     public static Rectangle2D.Double _fieldRect
             = new java.awt.geom.Rectangle2D.Double(18, 18, 764, 564);
-    public static double WALL_STICK = 160;
+    public static double WALL_STICK = 300;
 
     public void run() {
         _enemyWaves = new ArrayList<EnemyWave>();
         _surfDirections = new ArrayList<Integer>();
         _surfAbsBearings = new ArrayList<Double>();
+        
+      
 
         setAdjustGunForRobotTurn(true);
         setAdjustRadarForGunTurn(true);
@@ -54,6 +58,7 @@ public class Infinity  extends AdvancedRobot {
             // basic mini-radar code
             turnRadarRightRadians(Double.POSITIVE_INFINITY);
         } while (true);
+        
     }
 
     public void onScannedRobot(ScannedRobotEvent e) {
@@ -97,8 +102,13 @@ public class Infinity  extends AdvancedRobot {
 
         our_last_velocity = getVelocity();
         // gun code would go here...
-        
-        my_gun.onScannedRobot(e, this);
+        double absoluteBearing = getHeadingRadians() + e.getBearingRadians();
+        setTurnGunRightRadians(Utils.normalRelativeAngle(absoluteBearing
+                - getGunHeadingRadians() + (e.getVelocity() * Math.sin(e.getHeadingRadians()
+                - absoluteBearing) / 13.0)));
+        setFire(3.0);
+//        
+      //  my_gun.onScannedRobot(e, this);
     }
 
     public void updateWaves() {
@@ -279,7 +289,7 @@ public class Infinity  extends AdvancedRobot {
             //Take the distance from the past entry and the current predicted guess factor
             //Then divide by the similarity to the past entry's situation.
             total_danger += pec.dist_squared/Math.abs(factor - pec.dataPoint.dataObject[0]);
-//            System.out.println("Movement: Past hit at GF: "+pec.dataPoint.dataObject[0]);
+          System.out.println("Movement: Past hit at GF: "+pec.dataPoint.dataObject[0]);
         }
 
         return total_danger;
@@ -305,6 +315,10 @@ public class Infinity  extends AdvancedRobot {
         }
 
         setBackAsFront(this, goAngle);
+    }
+
+    private void setColor(Color green, Color green0, Color blue, Color red, Color black) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     // This can be defined as an inner class if you want.

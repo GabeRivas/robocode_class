@@ -44,12 +44,12 @@ public class R2D2 extends AdvancedRobot {
         setTurnRadarRightRadians(Utils.normalRelativeAngle(absBearing - getRadarHeadingRadians()) * 2);
 
         //Shooting at the robot
-        double absoluteBearing = getHeadingRadians() + e.getBearingRadians();
+       double absoluteBearing = getHeadingRadians() + e.getBearingRadians();
         setTurnGunRightRadians(Utils.normalRelativeAngle(absoluteBearing
                 - getGunHeadingRadians() + (e.getVelocity() * Math.sin(e.getHeadingRadians()
                 - absoluteBearing) / 13.0)));
         setFire(3.0);
-//        
+//         
 //        setTurnGunRightRadians(Utils.normalRelativeAngle(absBearing - getGunHeadingRadians()));
 //        if (getEnergy() > 3 && getGunHeat() == 0) {
 //            setFireBullet(3);

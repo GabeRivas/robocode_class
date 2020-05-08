@@ -11,12 +11,12 @@ import kd_tree.Kd_tree;
 import kd_tree.PointEntry;
 import robocode.ScannedRobotEvent;
 import robocode.util.Utils;
-import static gr.Infinity._oppEnergy;
-import static gr.Infinity.bulletVelocity;
-import static gr.Infinity.project;
+import static gr.Stark._oppEnergy;
+import static gr.Stark.bulletVelocity;
+import static gr.Stark.project;
 
 import robocode.*;
-import static gr.Infinity.NUM_DIMENSIONS_FOR_KDTREE;
+import static gr.Stark.NUM_DIMENSIONS_FOR_KDTREE;
 
 /**
  *
@@ -74,7 +74,7 @@ public class Gun {
         if (me.getGunHeat() <= me.getGunCoolingRate()) {
 //            System.out.println("Gun: Turn gun right: " + Utils.normalRelativeAngle(aim(_enemyLocation) - me.getGunHeadingRadians() + me.getHeadingRadians()));
             me.setTurnGunRightRadians(Utils.normalRelativeAngle(aim() - me.getGunHeadingRadians()));
-            me.setFire(2.0);
+            me.setFire(3.0);
         } else {
             me.setTurnGunRightRadians(Utils.normalRelativeAngle(w.directAngle - me.getGunHeadingRadians()));
         }
@@ -140,7 +140,7 @@ public class Gun {
     }
 
     public static double bulletVelocity(double power) {
-        return (20D - (3D * power));
+        return (30D - (4D * power));
     }
 
     // Given the EnemyWave that the bullet was on, and the point where we
